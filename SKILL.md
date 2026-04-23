@@ -51,14 +51,15 @@ triggers:
 
 # MAE/MFE 策略優化手冊
 
-## Global MFE 定義
+## MFE 使用定義
 
-本手冊使用 **Global MFE**（涵蓋整個持倉生命週期的絕對最高/最低點），而非「MAE 之前的 MFE」。
+本手冊的預設主體分析使用 **MFE before MAE**，而不是 **Global MFE**。
 
 - **MFE before MAE**：MAE 之前的最大有利幅度 — 反映「最大逆境前的甜頭」
 - **Global MFE**：整個持倉週期的最大有利幅度
-- 兩者重疊性越低 → 價格在 MAE 後仍大幅回升 → 需要追蹤停損（Ch9）
-- 兩者重疊性越高 → 獲利多在 MAE 前出現 → 優先考慮 SL/TP 配置（Ch6）
+- 一般的 MAE/MFE 分析、SL/TP 配置、Placement Test，預設以 **MFE before MAE** 為主
+- 若進入 **移動停損（TS）**、**損平停損（BE）**、**Lock Profit** 階段，才改看 **Global MFE**
+- 若 `MFE before MAE` 與 `Global MFE` 重疊性越低，代表價格在 MAE 後仍有明顯延伸，越需要進一步評估動態停損（Ch9）
 
 ## 五步驟主軸
 
