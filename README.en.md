@@ -50,7 +50,7 @@ The main skill definition. It contains:
 
 ### `references/practical-triage.md`
 
-A pre-optimization triage flow built around `PF -> WR -> RF`, used to decide whether a strategy is worth deeper MAE/MFE analysis in the first place.
+A pre-optimization triage flow built around `Profit Factor -> Win Ratio -> Recovery Factor`, used to decide whether a strategy is worth deeper MAE/MFE analysis in the first place.
 
 ### `references/chapter-details.md`
 

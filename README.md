@@ -50,7 +50,7 @@ English version: [README.en.md](./README.en.md)
 
 ### `references/practical-triage.md`
 
-以前置分流 `PF -> WR -> RF` 判斷策略是否值得進入更深的 MAE/MFE 分析。
+以前置分流 `Profit Factor -> Win Ratio -> Recovery Factor` 判斷策略是否值得進入更深的 MAE/MFE 分析。
 
 ### `references/chapter-details.md`
 
