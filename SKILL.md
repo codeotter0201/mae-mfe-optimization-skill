@@ -1,20 +1,23 @@
 ---
 name: mae-mfe-optimization
 description: |
-  MAE/MFE 策略優化手冊 — 理論框架、五步驟流程、風險與出場優化方法。
+  MAE/MFE 策略優化手冊 — 理論框架、五步驟流程、評分模型架構。
   Use when:
   - 討論 MAE/MFE 優化理論與方法論
   - 設計 Delayed Entry、SL/TP、TS/BE 參數
+  - 建立或理解評分模型（Scoring Model）的各層級公式
+  - 規劃策略參數掃描與篩選流程
   - 理解加碼/減碼策略的適用條件
   - 避免過擬合的原則與檢驗標準
   Do NOT use for:
-  - 回測系統或交易平台的 API 操作
-  - 原始交易資料 ETL / pipeline 實作
-  - 策略部署、下單路由、broker 整合
-  - 特定框架的設定檔或程式碼產生
-  - 回測任務提交、排程與結果抓取
+  - 評分→排名→選模型的迭代工作流 API（use strategy-optimization-workflow）
+  - TradesAnalyzer API 使用（use trades-analyzer-guide）
+  - Trades pipeline 資料處理（use trades-pipeline-guide）
+  - StrategyConfig 建立（use strategy-config-builder）
+  - 回測提交與結果取得（use backtest-workflow）
 triggers:
   - MAE/MFE optimization
+  - scoring model
   - delayed entry theory
   - placement test
   - money management tree
@@ -31,6 +34,7 @@ triggers:
   - edge ratio
   - volatility clustering
   - recovery factor target
+  - portfolio construction scoring
   - profit factor triage
   - strategy triage
   - alpha loss
@@ -40,6 +44,9 @@ triggers:
   - ATR regime
   - dynamic weight
   - regime detection
+  - portfolio weight engine
+  - strategy orthogonality
+  - correlation weight shrink
 ---
 
 # MAE/MFE 策略優化手冊
@@ -90,6 +97,7 @@ triggers:
 ├── 動態停損 → Ch9: MHL 分析
 ├── 加碼策略 → Ch10: E1(不利方向) / E2(有利方向)
 ├── 減碼策略 → Ch11: E3 通則
+├── 評分與篩選 → references/scoring-model.md
 └── 避免過擬合 → 見下方「反過擬合原則」
 ```
 
@@ -182,4 +190,5 @@ triggers:
 ## 參考檔案
 
 - `references/practical-triage.md` — PF → WR → RF 前置分流決策樹
+- `references/scoring-model.md` — 評分模型五層架構與公式
 - `references/chapter-details.md` — 各章節完整概念與實現細節

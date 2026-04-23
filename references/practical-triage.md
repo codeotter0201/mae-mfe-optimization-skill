@@ -132,7 +132,7 @@ RF ≥ 8
 機構每月需攤報表，對 P&L 穩定性要求更高：
 - **Recovery Period 優化**：多久能回到前一個淨值高點
 - **解法**：單一策略很難優化 RP，需透過**組合多個策略**達成
-- 若需進一步走向組合層級配置，可在此階段另外建立 portfolio construction 方法
+- 對應 scoring-model.md 的 Layer 4（Portfolio Construction）
 
 ---
 
