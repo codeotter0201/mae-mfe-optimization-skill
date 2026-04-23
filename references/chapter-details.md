@@ -17,7 +17,7 @@
 **實現**：
 1. 編寫基礎策略並回測
 2. 篩選波動度落在特定範圍內的交易樣本
-3. 記錄原始損益、MAE、Global MFE
+3. 記錄原始損益、MAE、MFE before MAE，並在 Trailing Stop / Breakeven / Lock Profit 分析時另看 Global MFE
 4. 加入延遲進場邏輯作為對照
 5. 觀察 MAE, MFE, MFE before MAE 時序圖確認波動穩定性
 
@@ -91,9 +91,9 @@
 
 **MAE vs MFE 散佈圖**：兩軸比例尺一致
 
-**MFE before MAE 使用時機**：
-- MFE 大多在 MAE 之前（波段交易）→ 用 MAE vs MFE before MAE
-- MFE 大多在 MAE 之後（趨勢交易）→ 用 MAE vs Global MFE
+**MFE 使用原則**：
+- 一般的 SL/TP 配置與 Placement Test，預設使用 MAE vs MFE before MAE
+- 若分析已進入 TS、BE、Lock Profit，改看 MAE vs Global MFE
 
 **集群分佈四型態**：
 | 型態 | 特徵 | 對策 |

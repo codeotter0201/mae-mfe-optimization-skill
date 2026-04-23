@@ -1,11 +1,10 @@
 ---
 name: mae-mfe-optimization
 description: |
-  MAE/MFE 策略優化手冊 — 理論框架、五步驟流程、評分模型架構。
+  MAE/MFE 策略優化手冊 — 理論框架、五步驟流程、實務決策導引。
   Use when:
   - 討論 MAE/MFE 優化理論與方法論
-  - 設計 Delayed Entry、SL/TP、TS/BE 參數
-  - 建立或理解評分模型（Scoring Model）的各層級公式
+  - 設計 Delayed Entry、SL/TP、Trailing Stop / Breakeven 參數
   - 規劃策略參數掃描與篩選流程
   - 理解加碼/減碼策略的適用條件
   - 避免過擬合的原則與檢驗標準
@@ -51,14 +50,11 @@ triggers:
 
 # MAE/MFE 策略優化手冊
 
-## Global MFE 定義
+這份 skill 採用「入口精簡、細節下放」的結構。
 
-本手冊使用 **Global MFE**（涵蓋整個持倉生命週期的絕對最高/最低點），而非「MAE 之前的 MFE」。
-
-- **MFE before MAE**：MAE 之前的最大有利幅度 — 反映「最大逆境前的甜頭」
-- **Global MFE**：整個持倉週期的最大有利幅度
-- 兩者重疊性越低 → 價格在 MAE 後仍大幅回升 → 需要追蹤停損（Ch9）
-- 兩者重疊性越高 → 獲利多在 MAE 前出現 → 優先考慮 SL/TP 配置（Ch6）
+- 核心定義、指標速查、反過擬合原則 → `references/core-concepts.md`
+- 前置分流 → `references/practical-triage.md`
+- 各章節展開細節 → `references/chapter-details.md`
 
 ## 五步驟主軸
 
@@ -88,7 +84,7 @@ triggers:
 ```
 需要什麼？
 ├── 策略是否值得優化 → references/practical-triage.md（Profit Factor → Win Ratio → Recovery Factor 分流）
-├── 理解核心指標定義 → 見下方「核心指標速查」
+├── 理解核心指標定義 → references/core-concepts.md
 ├── 設計 SL 位置 → Ch4: MAE CDF 分位數法
 ├── 設計 TP 位置 → Ch5: G_MFE CDF + 獲利回吐率
 ├── SL/TP 綜合配置 → Ch6: MAE vs MFE 散佈圖 + Placement Test
@@ -97,20 +93,12 @@ triggers:
 ├── 動態停損 → Ch9: MHL 分析
 ├── 加碼策略 → Ch10: E1(不利方向) / E2(有利方向)
 ├── 減碼策略 → Ch11: E3 通則
-├── 評分與篩選 → references/scoring-model.md
-└── 避免過擬合 → 見下方「反過擬合原則」
+└── 避免過擬合 → references/core-concepts.md
 ```
 
 ## 核心指標速查
 
-| 指標 | 定義 | 用途 |
-|------|------|------|
-| MAE | 持倉期間最大虧損幅度 | SL 設定依據 |
-| MFE (before MAE) | MAE 之前的最大獲利幅度 | 波段 vs 趨勢判斷 |
-| G_MFE | 整個持倉週期最大獲利幅度 | TP 設定、獲利潛力評估 |
-| MAE_lv1 | 首次到達 MAE 的幅度 | 區別首次回撤與後續更深回撤 |
-| MHL | G_MFE 到隨後低點的最大回撤 | 追蹤停損幅度參考 |
-| Edge Ratio | MFE(t) / MAE(t) | 進場後 t 個 Bar 的優勢比 |
+見 `references/core-concepts.md`。
 
 ## 關鍵章節摘要
 
@@ -171,13 +159,10 @@ triggers:
 
 ## 反過擬合原則
 
-1. **不要以 MDD 最小化作為優化的「因」** — MDD 變小只是 SL/TP 調整的「果」
-2. **使用「交易內」指標（MAE/MFE）而非僅「交易間」指標（MDD、Sharpe）**
-3. **加碼不是用來救策略** — 基本體質不好時，加碼只是分攤過擬合負擔
-4. **波動是策略的命脈** — 所有優化最終都在回答：策略能否在不同波動環境下穩定表現？
+見 `references/core-concepts.md`。
 
 ## 參考檔案
 
+- `references/core-concepts.md` — MFE 使用定義、核心指標速查、反過擬合原則
 - `references/practical-triage.md` — Profit Factor → Win Ratio → Recovery Factor 前置分流決策樹
-- `references/scoring-model.md` — 評分模型五層架構與公式
 - `references/chapter-details.md` — 各章節完整概念與實現細節

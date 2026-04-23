@@ -10,7 +10,7 @@ This repository is intentionally documentation-first. It does not provide a back
 
 The skill focuses on MAE/MFE-driven strategy optimization, including:
 
-- MAE, MFE, Global MFE, MHL, and Edge Ratio definitions
+- MAE, MFE before MAE, Global MFE, MHL, and Edge Ratio definitions
 - delayed entry design
 - stop-loss and take-profit placement
 - trailing stop and breakeven logic
@@ -34,6 +34,7 @@ The repo is useful when you want an agent to:
 ├── README.en.md
 ├── SKILL.md
 └── references
+    ├── core-concepts.md
     ├── chapter-details.md
     └── practical-triage.md
 ```
@@ -51,6 +52,14 @@ The main skill definition. It contains:
 ### `references/practical-triage.md`
 
 A pre-optimization triage flow built around `Profit Factor -> Win Ratio -> Recovery Factor`, used to decide whether a strategy is worth deeper MAE/MFE analysis in the first place.
+
+### `references/core-concepts.md`
+
+The compact concepts layer, including:
+
+- when to use MFE before MAE vs Global MFE
+- core metric definitions
+- anti-overfitting principles
 
 ### `references/chapter-details.md`
 
@@ -83,7 +92,7 @@ The optimization sequence currently encoded in the skill is:
 5. scaling
 6. account-level hedging
 
-The emphasis is on inside-trade structure such as MAE, MFE, Global MFE, MHL, and Edge Ratio, rather than relying only on top-line metrics like MDD or Sharpe.
+The emphasis is on inside-trade structure such as MAE, MFE before MAE, Global MFE, MHL, and Edge Ratio, rather than relying only on top-line metrics like MDD or Sharpe.
 
 ## Install as a Codex skill
 
