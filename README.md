@@ -10,7 +10,7 @@ English version: [README.en.md](./README.en.md)
 
 主題聚焦在以 MAE/MFE 為核心的策略優化，包括：
 
-- MAE、MFE、Global MFE、MHL、Edge Ratio 的定義
+- MAE、MFE before MAE、Global MFE、MHL、Edge Ratio 的定義
 - Delayed Entry 設計
 - Stop Loss / Take Profit 配置
 - Trailing Stop / Breakeven 的判斷
@@ -34,6 +34,7 @@ English version: [README.en.md](./README.en.md)
 ├── README.en.md
 ├── SKILL.md
 └── references
+    ├── core-concepts.md
     ├── chapter-details.md
     └── practical-triage.md
 ```
@@ -51,6 +52,14 @@ English version: [README.en.md](./README.en.md)
 ### `references/practical-triage.md`
 
 以前置分流 `Profit Factor -> Win Ratio -> Recovery Factor` 判斷策略是否值得進入更深的 MAE/MFE 分析。
+
+### `references/core-concepts.md`
+
+整理最核心的概念層內容，包括：
+
+- MFE before MAE 與 Global MFE 的使用邏輯
+- 核心指標速查
+- 反過擬合原則
 
 ### `references/chapter-details.md`
 
@@ -81,7 +90,7 @@ English version: [README.en.md](./README.en.md)
 5. 加減碼
 6. 帳戶層級避險
 
-重點是優先觀察 MAE、MFE、Global MFE、MHL、Edge Ratio 這類交易內部結構，而不是只看 MDD、Sharpe 這些表層總績效指標。
+重點是優先觀察 MAE、MFE before MAE、Global MFE、MHL、Edge Ratio 這類交易內部結構，而不是只看 MDD、Sharpe 這些表層總績效指標。
 
 ## 安裝成 Codex skill
 
