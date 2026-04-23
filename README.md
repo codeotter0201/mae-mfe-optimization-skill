@@ -1,6 +1,6 @@
 # mae-mfe-optimization-skill
 
-把公開分享的 MAE/MFE 交易分析內容，整理成可供 Codex / AI agent 使用的 skill。
+把公開分享的 MAE/MFE 交易分析內容，整理成可供 Codex、Claude Code 等 AI agent 直接載入使用的 skill。
 
 這個 repo 是文件與方法論導向，不是回測引擎、最佳化 API 或下單框架。它的目標是把 MAE/MFE 策略優化的概念、術語和決策流程整理成 agent 可重複使用的知識包。
 
@@ -26,6 +26,16 @@ English version: [README.en.md](./README.en.md)
 - 區分結構性改善與回測表面績效
 - 用研究流程而不是零碎技巧理解這個主題
 
+## 30 秒上手
+
+如果你是第一次讀這份 repo，按這個順序開檔最短路徑：
+
+1. **策略剛回測完，不確定值不值得優化** → `references/practical-triage.md`（PF → WR → RF 三階段分流）
+2. **已有具體優化問題（SL/TP、延遲進場、加減碼、動態停損等）** → `references/decision-playbooks.md`（照場景找操作流程）
+3. **需要對齊術語或追溯影片來源** → `references/core-concepts.md`、`references/source-map.md`、`references/episode-notes.md`
+
+`SKILL.md` 本身是入口索引與決策樹；細節都在 `references/`。
+
 ## Repo 結構
 
 ```text
@@ -33,10 +43,16 @@ English version: [README.en.md](./README.en.md)
 ├── README.md
 ├── README.en.md
 ├── SKILL.md
-└── references
-    ├── core-concepts.md
-    ├── chapter-details.md
-    └── practical-triage.md
+├── references
+│   ├── core-concepts.md
+│   ├── practical-triage.md
+│   ├── chapter-details.md
+│   ├── decision-playbooks.md
+│   ├── source-map.md
+│   └── episode-notes.md
+└── subtitles
+    └── maximum-excursion-analysis
+        └── INDEX.md
 ```
 
 ### `SKILL.md`
@@ -73,6 +89,22 @@ English version: [README.en.md](./README.en.md)
 - Trailing Stop / Breakeven
 - 加減碼與帳戶層級風控
 
+### `references/decision-playbooks.md`
+
+把章節內容轉成可直接照著跑的操作流程。遇到「要怎麼設計/判斷/優化 …」類問題時先開這個檔，內含 SL、TP、Placement Test、Delayed Entry、Trailing Stop / Breakeven、加減碼等場景的回答框架。
+
+### `references/source-map.md`
+
+集數 ↔ 章節 ↔ reference 的對照表，含播放清單與每集 YouTube 連結。需要追溯概念出處或確認某段說法來自哪一集時使用。
+
+### `references/episode-notes.md`
+
+從 22 集字幕萃取出的逐集中層筆記，每集列核心問題、使用資料、實務判斷與風險提醒。比 `chapter-details.md` 更貼近原始講解順序，適合逐集比對。
+
+### `subtitles/maximum-excursion-analysis/INDEX.md`
+
+字幕索引（字幕原檔 `.srt` 依 `.gitignore` 不納入版本管理）。僅在本機需要重新萃取內容時使用。
+
 ## 方法論摘要
 
 這份 skill 的主線不是直接暴力調參，而是先問三件事：
@@ -92,26 +124,41 @@ English version: [README.en.md](./README.en.md)
 
 重點是優先觀察 MAE、MFE before MAE、Global MFE、MHL、Edge Ratio 這類交易內部結構，而不是只看 MDD、Sharpe 這些表層總績效指標。
 
-## 安裝成 Codex skill
+## 安裝
 
-### 方式 1：直接 clone 到 Codex skills 目錄
+此 skill 的 `SKILL.md` 使用標準 frontmatter 格式，**Codex 與 Claude Code 皆可直接載入**。選你用的平台：
 
-若你的 Codex skills 目錄是 `~/.codex/skills`，可直接安裝：
+| 平台 | skills 目錄 |
+| --- | --- |
+| Codex | `~/.codex/skills/` |
+| Claude Code | `~/.claude/skills/` |
+
+### 方式 1：直接 clone
 
 ```bash
+# Codex 使用者
 git clone https://github.com/codeotter0201/mae-mfe-optimization-skill.git \
   ~/.codex/skills/mae-mfe-optimization
+
+# Claude Code 使用者
+git clone https://github.com/codeotter0201/mae-mfe-optimization-skill.git \
+  ~/.claude/skills/mae-mfe-optimization
 ```
 
-完成後重新開啟 Codex session，讓 skill 被重新載入。
+完成後重新開啟該平台的 session，讓 skill 被重新載入。
 
 ### 方式 2：本地開發時用 symlink 掛載
 
-如果你想一邊修改 repo、一邊讓 Codex 讀到：
+如果你想一邊修改 repo、一邊讓 agent 讀到：
 
 ```bash
+# Codex 使用者
 ln -s /path/to/mae-mfe-optimization-skill \
   ~/.codex/skills/mae-mfe-optimization
+
+# Claude Code 使用者
+ln -s /path/to/mae-mfe-optimization-skill \
+  ~/.claude/skills/mae-mfe-optimization
 ```
 
 這種方式比較適合正在迭代 `SKILL.md` 與 reference 文件時使用。
@@ -119,13 +166,13 @@ ln -s /path/to/mae-mfe-optimization-skill \
 ### 安裝後預期結構
 
 ```text
-~/.codex/skills/
-└── mae-mfe-optimization
-    ├── SKILL.md
-    └── references/
+~/.codex/skills/                       ~/.claude/skills/
+└── mae-mfe-optimization               └── mae-mfe-optimization
+    ├── SKILL.md                           ├── SKILL.md
+    └── references/                        └── references/
 ```
 
-## 在 Codex 裡使用
+## 呼叫方式
 
 安裝後，可以直接用 skill 名稱或直接提及主題。示例：
 
@@ -143,6 +190,13 @@ Apply mae-mfe-optimization and summarize whether this strategy is in a PF, WR, o
 
 ```text
 Using mae-mfe-optimization, explain whether trailing stop or fixed TP is more appropriate here.
+```
+
+完整起手式（策略剛回測完、還不知道瓶頸在哪）：
+
+```text
+Use mae-mfe-optimization. 先用 practical-triage.md 判斷這個策略值不值得深入優化，
+然後根據瓶頸落在 PF / WR / RF 哪一階段，從 decision-playbooks.md 提出下一個具體動作。
 ```
 
 ## 適用範圍與非目標
@@ -170,7 +224,7 @@ Using mae-mfe-optimization, explain whether trailing stop or fixed TP is more ap
 - MAE/MFE 網站：<https://www.maemfe.org/>
 - YouTube 頻道：<https://www.youtube.com/channel/UCHQ2g2rm9ml4dzdUfPdXuwQ>
 
-原始資料強調的核心包括 validation、交易內部結構觀察，以及避免過擬合。本 repo 做的是將這些內容重新組織為 Codex skill 可用的格式。
+原始資料強調的核心包括 validation、交易內部結構觀察，以及避免過擬合。本 repo 做的是將這些內容重新組織為 Codex / Claude Code 可直接載入的 skill 格式。
 
 ## 非官方聲明
 

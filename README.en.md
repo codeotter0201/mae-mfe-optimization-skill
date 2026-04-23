@@ -1,6 +1,6 @@
 # mae-mfe-optimization-skill
 
-A Codex skill that turns public MAE/MFE trading research into a structured, reusable methodology for AI agents.
+A skill that turns public MAE/MFE trading research into a structured, reusable methodology for AI agents. Loads directly into Codex and Claude Code.
 
 This repository is intentionally documentation-first. It does not provide a backtesting engine, optimization API, or execution framework. It packages concepts, decision rules, and workflow guidance so an agent can reason about MAE/MFE-based strategy optimization with consistent terminology.
 
@@ -26,6 +26,16 @@ The repo is useful when you want an agent to:
 - distinguish structural improvement from overfitting
 - navigate the topic as a research workflow instead of isolated tactics
 
+## 30-second quickstart
+
+If this is your first time opening the repo, this is the shortest read path:
+
+1. **Strategy just finished backtesting, not sure if it's worth optimizing** → `references/practical-triage.md` (PF → WR → RF triage)
+2. **You already have a specific optimization question (SL/TP, delayed entry, scaling, dynamic stops, ...)** → `references/decision-playbooks.md` (scenario-based playbooks)
+3. **Need to align terminology or trace a concept back to a video** → `references/core-concepts.md`, `references/source-map.md`, `references/episode-notes.md`
+
+`SKILL.md` itself is the entry index and decision tree; the detail lives in `references/`.
+
 ## Repository layout
 
 ```text
@@ -33,10 +43,16 @@ The repo is useful when you want an agent to:
 ├── README.md
 ├── README.en.md
 ├── SKILL.md
-└── references
-    ├── core-concepts.md
-    ├── chapter-details.md
-    └── practical-triage.md
+├── references
+│   ├── core-concepts.md
+│   ├── practical-triage.md
+│   ├── chapter-details.md
+│   ├── decision-playbooks.md
+│   ├── source-map.md
+│   └── episode-notes.md
+└── subtitles
+    └── maximum-excursion-analysis
+        └── INDEX.md
 ```
 
 ### `SKILL.md`
@@ -73,6 +89,22 @@ Expanded notes for the main topics, including:
 - trailing stop / breakeven
 - scaling and account-level risk ideas
 
+### `references/decision-playbooks.md`
+
+Chapter content turned into ready-to-follow playbooks. Open this first when the question is "how do I design / judge / optimize X". Covers SL, TP, placement test, delayed entry, trailing stop / breakeven, and scaling scenarios.
+
+### `references/source-map.md`
+
+Episode ↔ chapter ↔ reference mapping with the playlist URL and per-episode YouTube links. Use it to trace a concept back to the original video.
+
+### `references/episode-notes.md`
+
+Per-episode mid-level notes extracted from the 22-episode subtitle set. Each entry lists the core question, data used, practical judgement, and risks. Closer to the original teaching order than `chapter-details.md`.
+
+### `subtitles/maximum-excursion-analysis/INDEX.md`
+
+Subtitle index (the raw `.srt` files are excluded from version control by `.gitignore`). Only relevant when re-extracting content locally.
+
 ## Methodology at a glance
 
 This skill is built around a simple principle: do not jump straight into brute-force parameter tuning.
@@ -94,26 +126,41 @@ The optimization sequence currently encoded in the skill is:
 
 The emphasis is on inside-trade structure such as MAE, MFE before MAE, Global MFE, MHL, and Edge Ratio, rather than relying only on top-line metrics like MDD or Sharpe.
 
-## Install as a Codex skill
+## Install
 
-### Option 1: Clone directly into the Codex skills directory
+The `SKILL.md` uses the standard frontmatter format and **works with both Codex and Claude Code**. Pick the skills directory for the platform you use:
 
-If your local Codex skills directory is `~/.codex/skills`, install it like this:
+| Platform | Skills directory |
+| --- | --- |
+| Codex | `~/.codex/skills/` |
+| Claude Code | `~/.claude/skills/` |
+
+### Option 1: Clone directly
 
 ```bash
+# Codex
 git clone https://github.com/codeotter0201/mae-mfe-optimization-skill.git \
   ~/.codex/skills/mae-mfe-optimization
+
+# Claude Code
+git clone https://github.com/codeotter0201/mae-mfe-optimization-skill.git \
+  ~/.claude/skills/mae-mfe-optimization
 ```
 
-After that, restart Codex or open a new session so the skill can be discovered.
+After that, restart the platform or open a new session so the skill can be discovered.
 
 ### Option 2: Symlink during local development
 
-If you want to keep editing this repo in place and expose it to Codex at the same time:
+If you want to keep editing this repo in place and expose it to the agent at the same time:
 
 ```bash
+# Codex
 ln -s /path/to/mae-mfe-optimization-skill \
   ~/.codex/skills/mae-mfe-optimization
+
+# Claude Code
+ln -s /path/to/mae-mfe-optimization-skill \
+  ~/.claude/skills/mae-mfe-optimization
 ```
 
 This is the better setup when you are iterating on `SKILL.md` and the reference docs.
@@ -121,13 +168,13 @@ This is the better setup when you are iterating on `SKILL.md` and the reference 
 ### Expected final structure
 
 ```text
-~/.codex/skills/
-└── mae-mfe-optimization
-    ├── SKILL.md
-    └── references/
+~/.codex/skills/                       ~/.claude/skills/
+└── mae-mfe-optimization               └── mae-mfe-optimization
+    ├── SKILL.md                           ├── SKILL.md
+    └── references/                        └── references/
 ```
 
-## Use with Codex
+## Invoking the skill
 
 Once installed, reference the skill by name or ask for the topic directly. Example prompts:
 
@@ -145,6 +192,14 @@ Apply mae-mfe-optimization and summarize whether this strategy is in a PF, WR, o
 
 ```text
 Using mae-mfe-optimization, explain whether trailing stop or fixed TP is more appropriate here.
+```
+
+Full starting prompt (strategy just backtested, bottleneck unknown):
+
+```text
+Use mae-mfe-optimization. First run practical-triage.md to decide whether this
+strategy is worth deep optimization. Then, based on which phase (PF / WR / RF) the
+bottleneck is in, propose the next concrete action from decision-playbooks.md.
 ```
 
 ## Scope and non-goals
@@ -172,7 +227,7 @@ This repository is a derivative knowledge packaging effort based on publicly ava
 - MAE/MFE website: <https://www.maemfe.org/>
 - YouTube channel: <https://www.youtube.com/channel/UCHQ2g2rm9ml4dzdUfPdXuwQ>
 
-The source material frames MAE/MFE as a practical analysis discipline centered on validation, trade-structure observation, and avoiding overfitting. This repository reorganizes those ideas into a Codex skill format.
+The source material frames MAE/MFE as a practical analysis discipline centered on validation, trade-structure observation, and avoiding overfitting. This repository reorganizes those ideas into a skill format that Codex and Claude Code can load directly.
 
 ## Unofficial status
 

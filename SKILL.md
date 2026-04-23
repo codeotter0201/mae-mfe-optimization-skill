@@ -8,44 +8,19 @@ description: |
   - 規劃策略參數掃描與篩選流程
   - 理解加碼/減碼策略的適用條件
   - 避免過擬合的原則與檢驗標準
+  Also use for: placement test, money management tree (MMT), scaling in/out,
+  pyramiding, anti-martingale, SL/TP placement, trailing stop theory,
+  breakeven theory, MHL, edge ratio, volatility clustering, recovery factor
+  target, profit factor triage, strategy triage, alpha loss, strategy inversion,
+  win rate bottleneck, Expected Payoff monitoring, ATR regime, regime detection,
+  portfolio construction scoring, strategy orthogonality, and correlation
+  weight shrink.
   Do NOT use for:
   - 評分→排名→選模型的迭代工作流 API（use strategy-optimization-workflow）
   - TradesAnalyzer API 使用（use trades-analyzer-guide）
   - Trades pipeline 資料處理（use trades-pipeline-guide）
   - StrategyConfig 建立（use strategy-config-builder）
   - 回測提交與結果取得（use backtest-workflow）
-triggers:
-  - MAE/MFE optimization
-  - scoring model
-  - delayed entry theory
-  - placement test
-  - money management tree
-  - MMT
-  - scaling in
-  - scaling out
-  - pyramiding
-  - anti-martingale
-  - overfitting prevention
-  - SL/TP placement
-  - trailing stop theory
-  - breakeven theory
-  - MHL
-  - edge ratio
-  - volatility clustering
-  - recovery factor target
-  - portfolio construction scoring
-  - profit factor triage
-  - strategy triage
-  - alpha loss
-  - strategy inversion
-  - win rate bottleneck
-  - EP monitoring
-  - ATR regime
-  - dynamic weight
-  - regime detection
-  - portfolio weight engine
-  - strategy orthogonality
-  - correlation weight shrink
 ---
 
 # MAE/MFE 策略優化手冊
@@ -55,6 +30,9 @@ triggers:
 - 核心定義、指標速查、反過擬合原則 → `references/core-concepts.md`
 - 前置分流 → `references/practical-triage.md`
 - 各章節展開細節 → `references/chapter-details.md`
+- 影片來源對照 → `references/source-map.md`
+- 逐集萃取筆記 → `references/episode-notes.md`
+- 可執行決策流程 → `references/decision-playbooks.md`
 
 ## 五步驟主軸
 
@@ -85,6 +63,9 @@ triggers:
 需要什麼？
 ├── 策略是否值得優化 → references/practical-triage.md（Profit Factor → Win Ratio → Recovery Factor 分流）
 ├── 理解核心指標定義 → references/core-concepts.md
+├── 依問題產出操作流程 → references/decision-playbooks.md
+├── 追溯影片來源或集數 → references/source-map.md
+├── 查單集影片萃取重點 → references/episode-notes.md
 ├── 設計 SL 位置 → Ch4: MAE CDF 分位數法
 ├── 設計 TP 位置 → Ch5: G_MFE CDF + 獲利回吐率
 ├── SL/TP 綜合配置 → Ch6: MAE vs MFE 散佈圖 + Placement Test
@@ -166,3 +147,6 @@ triggers:
 - `references/core-concepts.md` — MFE 使用定義、核心指標速查、反過擬合原則
 - `references/practical-triage.md` — Profit Factor → Win Ratio → Recovery Factor 前置分流決策樹
 - `references/chapter-details.md` — 各章節完整概念與實現細節
+- `references/source-map.md` — 字幕與影片集數到 skill 章節的來源對照
+- `references/episode-notes.md` — 從 22 集字幕萃取出的逐集筆記
+- `references/decision-playbooks.md` — 面向實務問題的操作流程與回答框架
