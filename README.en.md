@@ -43,16 +43,13 @@ If this is your first time opening the repo, this is the shortest read path:
 ├── README.md
 ├── README.en.md
 ├── SKILL.md
-├── references
-│   ├── core-concepts.md
-│   ├── practical-triage.md
-│   ├── chapter-details.md
-│   ├── decision-playbooks.md
-│   ├── source-map.md
-│   └── episode-notes.md
-└── subtitles
-    └── maximum-excursion-analysis
-        └── INDEX.md
+└── references
+    ├── core-concepts.md
+    ├── practical-triage.md
+    ├── chapter-details.md
+    ├── decision-playbooks.md
+    ├── source-map.md
+    └── episode-notes.md
 ```
 
 ### `SKILL.md`
@@ -100,10 +97,6 @@ Episode ↔ chapter ↔ reference mapping with the playlist URL and per-episode 
 ### `references/episode-notes.md`
 
 Per-episode mid-level notes extracted from the 22-episode subtitle set. Each entry lists the core question, data used, practical judgement, and risks. Closer to the original teaching order than `chapter-details.md`.
-
-### `subtitles/maximum-excursion-analysis/INDEX.md`
-
-Subtitle index (the raw `.srt` files are excluded from version control by `.gitignore`). Only relevant when re-extracting content locally.
 
 ## Methodology at a glance
 

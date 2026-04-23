@@ -43,16 +43,13 @@ English version: [README.en.md](./README.en.md)
 ├── README.md
 ├── README.en.md
 ├── SKILL.md
-├── references
-│   ├── core-concepts.md
-│   ├── practical-triage.md
-│   ├── chapter-details.md
-│   ├── decision-playbooks.md
-│   ├── source-map.md
-│   └── episode-notes.md
-└── subtitles
-    └── maximum-excursion-analysis
-        └── INDEX.md
+└── references
+    ├── core-concepts.md
+    ├── practical-triage.md
+    ├── chapter-details.md
+    ├── decision-playbooks.md
+    ├── source-map.md
+    └── episode-notes.md
 ```
 
 ### `SKILL.md`
@@ -100,10 +97,6 @@ English version: [README.en.md](./README.en.md)
 ### `references/episode-notes.md`
 
 從 22 集字幕萃取出的逐集中層筆記，每集列核心問題、使用資料、實務判斷與風險提醒。比 `chapter-details.md` 更貼近原始講解順序，適合逐集比對。
-
-### `subtitles/maximum-excursion-analysis/INDEX.md`
-
-字幕索引（字幕原檔 `.srt` 依 `.gitignore` 不納入版本管理）。僅在本機需要重新萃取內容時使用。
 
 ## 方法論摘要
 
