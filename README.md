@@ -1,37 +1,37 @@
 # mae-mfe-optimization-skill
 
-A Codex skill that turns public MAE/MFE trading research into a structured, reusable methodology for AI agents.
+把公開分享的 MAE/MFE 交易分析內容，整理成可供 Codex / AI agent 使用的 skill。
 
-This repository is intentionally documentation-first. It does not provide a backtesting engine, optimization API, or execution framework. It packages concepts, decision rules, and workflow guidance so an agent can reason about MAE/MFE-based strategy optimization with consistent terminology.
+這個 repo 是文件與方法論導向，不是回測引擎、最佳化 API 或下單框架。它的目標是把 MAE/MFE 策略優化的概念、術語和決策流程整理成 agent 可重複使用的知識包。
 
-中文說明請見 [README.zh-TW.md](./README.zh-TW.md).
+English version: [README.en.md](./README.en.md)
 
-## What this skill covers
+## 這個 skill 包含什麼
 
-The skill focuses on MAE/MFE-driven strategy optimization, including:
+主題聚焦在以 MAE/MFE 為核心的策略優化，包括：
 
-- MAE, MFE, Global MFE, MHL, and Edge Ratio definitions
-- delayed entry design
-- stop-loss and take-profit placement
-- trailing stop and breakeven logic
-- scaling in and scaling out conditions
-- practical triage before deep optimization
-- overfitting-aware optimization order
+- MAE、MFE、Global MFE、MHL、Edge Ratio 的定義
+- Delayed Entry 設計
+- Stop Loss / Take Profit 配置
+- Trailing Stop / Breakeven 的判斷
+- Scaling in / Scaling out 的適用條件
+- 深度優化前的 Practical Triage
+- 以避免過擬合為前提的優化順序
 
-The repo is useful when you want an agent to:
+適合拿來讓 agent：
 
-- explain the MAE/MFE optimization framework
-- propose a disciplined optimization sequence
-- reason about SL/TP or delayed entry choices
-- distinguish structural improvement from overfitting
-- navigate the topic as a research workflow instead of isolated tactics
+- 解釋 MAE/MFE 優化框架
+- 提出較合理的優化順序
+- 討論 SL/TP 或延遲進場選擇
+- 區分結構性改善與回測表面績效
+- 用研究流程而不是零碎技巧理解這個主題
 
-## Repository layout
+## Repo 結構
 
 ```text
 .
 ├── README.md
-├── README.zh-TW.md
+├── README.en.md
 ├── SKILL.md
 └── references
     ├── chapter-details.md
@@ -40,76 +40,74 @@ The repo is useful when you want an agent to:
 
 ### `SKILL.md`
 
-The main skill definition. It contains:
+主 skill 定義，包含：
 
-- trigger conditions and scope
-- core terminology
-- the five-step optimization spine
-- chapter-to-decision mapping
-- anti-overfitting principles
+- 觸發條件與使用範圍
+- 核心術語
+- 五步驟優化主軸
+- 章節與決策對照
+- 反過擬合原則
 
 ### `references/practical-triage.md`
 
-A pre-optimization triage flow built around `PF -> WR -> RF`, used to decide whether a strategy is worth deeper MAE/MFE analysis in the first place.
+以前置分流 `PF -> WR -> RF` 判斷策略是否值得進入更深的 MAE/MFE 分析。
 
 ### `references/chapter-details.md`
 
-Expanded notes for the main topics, including:
+補充主要主題的展開說明，包括：
 
-- volatility normalization with ATR
-- time-axis MAE/MFE and Edge Ratio
-- placement testing
-- delayed entry
-- regime and environment filters
-- trailing stop / breakeven
-- scaling and account-level risk ideas
+- ATR 波動標準化
+- 時間面 MAE/MFE 與 Edge Ratio
+- Placement Test
+- Delayed Entry
+- 環境與 regime filter
+- Trailing Stop / Breakeven
+- 加減碼與帳戶層級風控
 
-## Methodology at a glance
+## 方法論摘要
 
-This skill is built around a simple principle: do not jump straight into brute-force parameter tuning.
+這份 skill 的主線不是直接暴力調參，而是先問三件事：
 
-Instead, ask:
+1. 這個策略到底值不值得優化？
+2. 瓶頸出在進場、SL/TP、波動環境，還是持倉管理？
+3. 改善是交易內部結構的改善，還是只是回測結果好看？
 
-1. Is the strategy worth optimizing at all?
-2. Is the bottleneck entry timing, SL/TP structure, volatility regime, or trade management?
-3. Is the improvement inside-trade structural improvement, or just backtest cosmetics?
+目前 skill 內整理的優化順序是：
 
-The optimization sequence currently encoded in the skill is:
+1. 延遲進場
+2. 停損止盈調整
+3. 環境過濾
+4. 動態停損
+5. 加減碼
+6. 帳戶層級避險
 
-1. delayed entry
-2. stop-loss / take-profit adjustment
-3. environment filtering
-4. dynamic stops
-5. scaling
-6. account-level hedging
+重點是優先觀察 MAE、MFE、Global MFE、MHL、Edge Ratio 這類交易內部結構，而不是只看 MDD、Sharpe 這些表層總績效指標。
 
-The emphasis is on inside-trade structure such as MAE, MFE, Global MFE, MHL, and Edge Ratio, rather than relying only on top-line metrics like MDD or Sharpe.
+## 安裝成 Codex skill
 
-## Install as a Codex skill
+### 方式 1：直接 clone 到 Codex skills 目錄
 
-### Option 1: Clone directly into the Codex skills directory
-
-If your local Codex skills directory is `~/.codex/skills`, install it like this:
+若你的 Codex skills 目錄是 `~/.codex/skills`，可直接安裝：
 
 ```bash
 git clone https://github.com/codeotter0201/mae-mfe-optimization-skill.git \
   ~/.codex/skills/mae-mfe-optimization
 ```
 
-After that, restart Codex or open a new session so the skill can be discovered.
+完成後重新開啟 Codex session，讓 skill 被重新載入。
 
-### Option 2: Symlink during local development
+### 方式 2：本地開發時用 symlink 掛載
 
-If you want to keep editing this repo in place and expose it to Codex at the same time:
+如果你想一邊修改 repo、一邊讓 Codex 讀到：
 
 ```bash
 ln -s /path/to/mae-mfe-optimization-skill \
   ~/.codex/skills/mae-mfe-optimization
 ```
 
-This is the better setup when you are iterating on `SKILL.md` and the reference docs.
+這種方式比較適合正在迭代 `SKILL.md` 與 reference 文件時使用。
 
-### Expected final structure
+### 安裝後預期結構
 
 ```text
 ~/.codex/skills/
@@ -118,9 +116,9 @@ This is the better setup when you are iterating on `SKILL.md` and the reference 
     └── references/
 ```
 
-## Use with Codex
+## 在 Codex 裡使用
 
-Once installed, reference the skill by name or ask for the topic directly. Example prompts:
+安裝後，可以直接用 skill 名稱或直接提及主題。示例：
 
 ```text
 Use mae-mfe-optimization to explain the correct optimization order for this strategy.
@@ -138,39 +136,39 @@ Apply mae-mfe-optimization and summarize whether this strategy is in a PF, WR, o
 Using mae-mfe-optimization, explain whether trailing stop or fixed TP is more appropriate here.
 ```
 
-## Scope and non-goals
+## 適用範圍與非目標
 
-This repository is designed for:
+這個 repo 適合：
 
-- methodology packaging
-- research guidance
-- terminology alignment
-- agent-readable documentation
+- 方法論封裝
+- 研究導引
+- 術語對齊
+- 讓 agent 可讀的文件整理
 
-It does not include:
+它不包含：
 
-- trade ETL pipelines
-- backtest execution code
-- parameter search infrastructure
-- broker or live execution integration
+- 交易資料 ETL
+- 回測執行程式
+- 自動化參數搜尋
+- 券商或實盤執行整合
 
-If you want a full production workflow, this skill should sit upstream of your data, ranking, backtesting, and execution layers.
+如果你要接到完整生產工作流，通常還需要資料層、排名層、回測層和執行層。
 
-## Sources and attribution
+## 來源與致謝
 
-This repository is a derivative knowledge packaging effort based on publicly available material, primarily:
+本 repo 是基於公開資料進行的二次整理，主要來源為：
 
-- MAE/MFE website: <https://www.maemfe.org/>
-- YouTube channel: <https://www.youtube.com/channel/UCHQ2g2rm9ml4dzdUfPdXuwQ>
+- MAE/MFE 網站：<https://www.maemfe.org/>
+- YouTube 頻道：<https://www.youtube.com/channel/UCHQ2g2rm9ml4dzdUfPdXuwQ>
 
-The source material frames MAE/MFE as a practical analysis discipline centered on validation, trade-structure observation, and avoiding overfitting. This repository reorganizes those ideas into a Codex skill format.
+原始資料強調的核心包括 validation、交易內部結構觀察，以及避免過擬合。本 repo 做的是將這些內容重新組織為 Codex skill 可用的格式。
 
-## Unofficial status
+## 非官方聲明
 
-This is an unofficial repository. It is not affiliated with, endorsed by, or maintained by the original author or source channels.
+這是非官方 repo，與原作者、原網站、原頻道沒有附屬、背書或維護關係。
 
-If you reuse or redistribute this work, keep the original source links and make it clear which parts are your own summaries or restructuring.
+若你要再散布或衍生使用，建議保留原始來源連結，並清楚標示哪些部分屬於你的整理或改寫。
 
-## Disclaimer
+## 免責
 
-This repository is for research, documentation, and agent-assisted analysis only. It is not investment advice, trading advice, or a promise of performance.
+本 repo 僅供研究、文件整理與 agent 輔助分析使用，不構成投資建議、交易建議或績效保證。
