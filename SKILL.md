@@ -87,7 +87,7 @@ triggers:
 
 ```
 需要什麼？
-├── 策略是否值得優化 → references/practical-triage.md（PF → WR → RF 分流）
+├── 策略是否值得優化 → references/practical-triage.md（Profit Factor → Win Ratio → Recovery Factor 分流）
 ├── 理解核心指標定義 → 見下方「核心指標速查」
 ├── 設計 SL 位置 → Ch4: MAE CDF 分位數法
 ├── 設計 TP 位置 → Ch5: G_MFE CDF + 獲利回吐率
@@ -169,26 +169,15 @@ triggers:
 - **E3 通則**：在加碼位置與 TP 的 1/2 到 1/3 處減碼
 - 可依持有時間或獲利幅度階梯式平倉
 
-## G_MFE 診斷指標（跨層級）
-
-| 指標 | 公式 | 意義 |
-|------|------|------|
-| 獲利挖掘率 | PNL_median / G_MFE_median | 越接近 1 越好 |
-| 獲利回吐率 | 1 - PNL_median / G_MFE_median | 越高 → 獲利回吐嚴重 |
-| MHL 壓力指標 | MHL_median / G_MFE_median | 越高 → 不適合 TS |
-| BE 可行性 | P(G_MFE > Loss_G_MFE_Q3) | 比例越高 → BE 越可行 |
-
 ## 反過擬合原則
 
 1. **不要以 MDD 最小化作為優化的「因」** — MDD 變小只是 SL/TP 調整的「果」
 2. **使用「交易內」指標（MAE/MFE）而非僅「交易間」指標（MDD、Sharpe）**
-3. **每一步優化後必須進行 OOS 驗證**
-4. **加碼不是用來救策略** — 基本體質不好時，加碼只是分攤過擬合負擔
-5. **波動是策略的命脈** — 所有優化最終都在回答：策略能否在不同波動環境下穩定表現？
-6. **持續降低 SL + 提高 TP** = 降低對波動忍耐度 = 本質上在過擬合
+3. **加碼不是用來救策略** — 基本體質不好時，加碼只是分攤過擬合負擔
+4. **波動是策略的命脈** — 所有優化最終都在回答：策略能否在不同波動環境下穩定表現？
 
 ## 參考檔案
 
-- `references/practical-triage.md` — PF → WR → RF 前置分流決策樹
+- `references/practical-triage.md` — Profit Factor → Win Ratio → Recovery Factor 前置分流決策樹
 - `references/scoring-model.md` — 評分模型五層架構與公式
 - `references/chapter-details.md` — 各章節完整概念與實現細節
