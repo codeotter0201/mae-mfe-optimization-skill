@@ -101,7 +101,7 @@ Expected Payoff = WR × Avg.Gain + (1 - WR) × Avg.Loss
 - 不利方向攤平加碼（Anti-Martingale）
 - 有利方向提前減碼（Partial Close）
 
-**C. TS/BE（Trailing Stop & Breakeven）**
+**C. Trailing Stop / Breakeven**
 
 - 透過 MHL 找到最佳移動停損方式
 - 透過 Lose Trade MFE 位置設 Breakeven Stop
@@ -149,6 +149,6 @@ RF ≥ 8
 | WR < 40% | EP 監控法，找勝率瓶頸 |
 | WR 40~60% | 優先提升到 60% |
 | WR ≥ 60%, PF 2~5 | 理想，進入 RF 優化 |
-| RF < 8 | Delayed Entry → Scaling → TS/BE |
+| RF < 8 | Delayed Entry → Scaling → Trailing Stop / Breakeven |
 | RF ≥ 8（散戶）| 滾動回測 + 敏感度分析 + 壓力測試 |
 | RF ≥ 8（機構）| 組合策略優化 Recovery Period |

@@ -17,7 +17,7 @@
 **實現**：
 1. 編寫基礎策略並回測
 2. 篩選波動度落在特定範圍內的交易樣本
-3. 記錄原始損益、MAE、MFE before MAE，並在 TS/BE/Lock Profit 分析時另看 Global MFE
+3. 記錄原始損益、MAE、MFE before MAE，並在 Trailing Stop / Breakeven / Lock Profit 分析時另看 Global MFE
 4. 加入延遲進場邏輯作為對照
 5. 觀察 MAE, MFE, MFE before MAE 時序圖確認波動穩定性
 

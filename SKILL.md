@@ -4,7 +4,7 @@ description: |
   MAE/MFE 策略優化手冊 — 理論框架、五步驟流程、評分模型架構。
   Use when:
   - 討論 MAE/MFE 優化理論與方法論
-  - 設計 Delayed Entry、SL/TP、TS/BE 參數
+  - 設計 Delayed Entry、SL/TP、Trailing Stop / Breakeven 參數
   - 建立或理解評分模型（Scoring Model）的各層級公式
   - 規劃策略參數掃描與篩選流程
   - 理解加碼/減碼策略的適用條件
@@ -58,7 +58,7 @@ triggers:
 - **MFE before MAE**：MAE 之前的最大有利幅度 — 反映「最大逆境前的甜頭」
 - **Global MFE**：整個持倉週期的最大有利幅度
 - 一般的 MAE/MFE 分析、SL/TP 配置、Placement Test，預設以 **MFE before MAE** 為主
-- 若進入 **移動停損（TS）**、**損平停損（BE）**、**Lock Profit** 階段，才改看 **Global MFE**
+- 若進入 **Trailing Stop**、**Breakeven Stop**、**Lock Profit** 階段，才改看 **Global MFE**
 - 若 `MFE before MAE` 與 `Global MFE` 重疊性越低，代表價格在 MAE 後仍有明顯延伸，越需要進一步評估動態停損（Ch9）
 
 ## 五步驟主軸
